@@ -1,0 +1,30 @@
+name: flutter_sensors
+description: low dart version support
+version: 0.0.1
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev. This is preferred for private packages.
+
+# Uncomment this code block if you wish to publish to pub.dev.
+# homepage: https://github.com/WangYng 
+# repository: https://github.com/WangYng/better_plugin
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# The following section is specific to Flutter.
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: io.github.wangyng.flutter_sensors
+        pluginClass: FlutterSensorsPlugin
+      ios:
+        pluginClass: FlutterSensorsPlugin
