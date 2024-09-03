@@ -12,7 +12,7 @@ import 'behaviors/contact_behavior.dart';
 
 class Coin extends BodyComponent with ZIndex {
   // 币的大小
-  static final Vector2 size = Vector2.all(28);
+  static final Vector2 size = Vector2.all(2.8);
 
   // 开始的位置 和 结束的位置
   final Vector2 begin;
@@ -61,16 +61,17 @@ class Coin extends BodyComponent with ZIndex {
 
     Vector2 begin = this.begin;
     if (type == BodyType.dynamic) {
-      final x = Random().nextDouble() * 160 - 80;
-      final y = Random().nextDouble() * 160;
+      final x = Random().nextDouble() * 16.0 - 8.0;
+      final y = Random().nextDouble() * 16.0;
 
       begin = Vector2(x, y);
     }
 
     final bodyDef = BodyDef(position: begin, type: type);
-
+    bodyDef.linearDamping = 0.001;
+    bodyDef.angularDamping = 1;
     final body = world.createBody(bodyDef);
-    body.createFixture(FixtureDef(shape, friction: 1, userData: "coin"));
+    body.createFixture(FixtureDef(shape, friction: 1, restitution: 0, density: 7.9 * 1000, userData: "coin"));
     return body;
   }
 
@@ -107,7 +108,7 @@ class CoinSpriteComponent extends SpriteComponent with HasGameRef {
 
     final sprite = await Sprite.load("game_coin.png");
     this.sprite = sprite;
-    size = Vector2(40, 40);
+    size = Vector2(4.0, 4.0);
   }
 }
 
@@ -134,7 +135,7 @@ class CoinBehavior extends ContactBehavior<Coin> {
 
     // 碰撞速度限制
     final velocity = parent.body.linearVelocity;
-    if (velocity.x.abs() < 50 && velocity.y.abs() < 50) {
+    if (velocity.x.abs() < 5.0 && velocity.y.abs() < 5.0) {
       return;
     }
 

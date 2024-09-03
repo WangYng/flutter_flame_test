@@ -8,57 +8,57 @@ class Boundaries extends BodyComponent {
   List<FixtureDef> _createFixtureDefs() {
     final topWall = EdgeShape()
       ..set(
-        Vector2(54, -104),
-        Vector2(-54, -104),
+        Vector2(5.4, -10.4),
+        Vector2(-5.4, -10.4),
       );
 
     final topLeftCurve = BezierCurveShape(
       controlPoints: [
         topWall.vertex2,
-        Vector2(-104, -100),
-        Vector2(-112, -40),
+        Vector2(-10.4, -10.0),
+        Vector2(-11.2, -4.0),
       ],
     );
 
     final leftWall = EdgeShape()
       ..set(
         topLeftCurve.vertices.last,
-        Vector2(-112, 68),
+        Vector2(-11.2, 6.8),
       );
 
     final bottomLeftCurve = BezierCurveShape(
       controlPoints: [
         leftWall.vertex2,
-        Vector2(-108, 124),
-        Vector2(-44, 129),
+        Vector2(-10.8, 12.4),
+        Vector2(-4.4, 12.9),
       ],
     );
 
     final bottomWall = EdgeShape()
       ..set(
         bottomLeftCurve.vertices.last,
-        Vector2(44, 129),
+        Vector2(4.4, 12.9),
       );
 
     final bottomRightCurve = BezierCurveShape(
       controlPoints: [
         bottomWall.vertex2,
-        Vector2(108, 124),
-        Vector2(112, 68),
+        Vector2(10.8, 12.4),
+        Vector2(11.2, 6.8),
       ],
     );
 
     final rightWall = EdgeShape()
       ..set(
         bottomRightCurve.vertices.last,
-        Vector2(112, -40),
+        Vector2(11.2, -4.0),
       );
 
     final topRightCurve = BezierCurveShape(
       controlPoints: [
         rightWall.vertex2,
-        Vector2(104, -100),
-        Vector2(53, -104),
+        Vector2(10.4, -10.0),
+        Vector2(5.3, -10.4),
       ],
     );
 
@@ -79,7 +79,7 @@ class Boundaries extends BodyComponent {
 
   @override
   Body createBody() {
-    final bodyDef = BodyDef()..position = Vector2(0, 82);
+    final bodyDef = BodyDef()..position = Vector2(0, 8.2);
     final body = world.createBody(bodyDef);
     _createFixtureDefs().forEach(body.createFixture);
 
@@ -98,7 +98,7 @@ class _OuterBoundarySpriteComponent extends SpriteComponent {
   _OuterBoundarySpriteComponent()
       : super(
           anchor: Anchor.center,
-          position: Vector2(0, -7.8),
+          position: Vector2(0, -0.78),
         );
 
   @override
@@ -107,7 +107,7 @@ class _OuterBoundarySpriteComponent extends SpriteComponent {
 
     final sprite = await Sprite.load("game_bottle.png");
     this.sprite = sprite;
-    size = Vector2(255, 308);
+    size = Vector2(25.5, 30.8);
   }
 }
 

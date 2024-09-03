@@ -44,7 +44,9 @@ class MyGame extends Forge2DGame {
     ]);
 
     accelerometerSubscription = FlutterSensors.accelerometerEventStream.listen((AccelerometerEvent event) {
-      world.gravity = Vector2(event.x * -100, event.y * 100);
+      final x = event.x.clamp(-5, 5);
+      final y = event.y.clamp(-5, 5);
+      world.gravity = Vector2(x * -20, y * 20);
     });
 
     initCoinSubscription = gameEventBus.on<InitCoinEvent>().listen((event) {
@@ -60,11 +62,11 @@ class MyGame extends Forge2DGame {
 
 
       if (event.tag == "1") {
-        vector2 = Vector2(-138, -135);
+        vector2 = Vector2(-13.8, -13.5);
       } else if (event.tag == "2") {
-        vector2 = Vector2(0, -193);
+        vector2 = Vector2(0, -19.3);
       } else if (event.tag == "3") {
-        vector2 = Vector2(69, -166);
+        vector2 = Vector2(6.9, -16.6);
       }
 
       if (coinList.length < maxCount) {
@@ -76,7 +78,7 @@ class MyGame extends Forge2DGame {
       }
     });
 
-    camera.viewfinder.zoom = 1;
+    camera.viewfinder.zoom = 10;
 
     FlutterSensors.register();
 
